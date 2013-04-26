@@ -24,34 +24,42 @@ class SyllableGenerator (val useX: Boolean, val sInsteadOfsh: Boolean = false, v
 	val forCommon = forW:::forWRare:::forAll
 	val forYouon = forW:::forAll
 
-
-	def generateSyllableF(youon:Boolean):Syllable = {
-		var rarity:Rarity.Value = null
-		val consonants =
-		if (youon){
-			rarity = Rarity.Youon
-			youonConsonants
+	/**
+	 * Generates full syllable, consonant+vowel
+	 * @param youonForce force creating ya\yo\yu syllable
+	 * @param youonProhibit don't create ?ya\?yo\?yu syllables, for word creation.
+	 * @return resulting syllable
+	 */
+	def generateSyllableF(youonForce:Boolean, youonProhibit:Boolean):Syllable = {
+		val rarity =
+		if (youonForce){
+			Rarity.Youon
 		} else if (Randomizer.pickWithProb(0.50)){
-			rarity = Rarity.Common
-			commonConsonants
+			Rarity.Common
 		} else if (Randomizer.pickWithProb(0.50)){
-			rarity = Rarity.Uncommon
-			uncommonConsonants
+			Rarity.Uncommon
 		} else if (Randomizer.pickWithProb(0.50)){
-			rarity = Rarity.Youon
-			youonConsonants
-		} else if (Randomizer.pickWithProb(0.50)) {
-			rarity = Rarity.Epic
-			epicConsonants
+			Rarity.Youon
+		} else if (Randomizer.pickWithProb(0.50)){
+			Rarity.Epic
 		} else {
-			rarity = Rarity.EpicAlt
-			epicConsonantsAlt
+			Rarity.EpicAlt
+		}
+
+		val consonants = rarity match {
+			case Rarity.Common => commonConsonants
+			case Rarity.Uncommon => uncommonConsonants
+			case Rarity.Epic => epicConsonants
+			case Rarity.Youon => youonConsonants
+			case Rarity.EpicAlt => epicConsonantsAlt
 		}
 		val consonant = Randomizer.pickFrom(consonants)
 		val probOfYouon = if (consonant == j) 0.05 else 0.15
+		var generatedYouon = false
 		val vowel =
-		if (!youon && rarity != Rarity.Youon && Randomizer.pickWithProb(probOfYouon)){
-			generateSyllableF(youon = true).toString
+		if (!youonForce && !youonProhibit && rarity != Rarity.Youon && Randomizer.pickWithProb(probOfYouon)){
+			generatedYouon = true
+			generateSyllableF(youonForce = true, youonProhibit = false).toString
 		} else {
 			val vowels = rarity match {
 				case Rarity.Uncommon | Rarity.Common => forCommon
@@ -61,13 +69,13 @@ class SyllableGenerator (val useX: Boolean, val sInsteadOfsh: Boolean = false, v
 			}
 			Randomizer.pickFrom(vowels)
 		}
-		new Syllable(consonant,vowel)
+		new Syllable(consonant,vowel,generatedYouon)
 	}
-	def generateSyllableF:Syllable = generateSyllableF(youon = false)
+	def generateSyllableF:Syllable = generateSyllableF(youonForce = false, youonProhibit = false)
 
 	def generateSyllableV(includeN:Boolean):Syllable = {
 		val letters = if (includeN) forAll:+"n" else forAll
-		new Syllable("",Randomizer.pickFrom(letters))
+		new Syllable("",Randomizer.pickFrom(letters),false)
 	}
 
 }
