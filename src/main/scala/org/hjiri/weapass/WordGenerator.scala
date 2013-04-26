@@ -1,3 +1,5 @@
+package org.hjiri.weapass
+
 /**
  * Created with IntelliJ IDEA.
  * User: jcd
@@ -12,7 +14,7 @@ class WordGenerator(val sg:SyllableGenerator) {
 			val syllable =
 			if ((0 to 5 contains(word.n())) && Randomizer.pickWithProb(0.25)){
 				sg.generateSyllableV(useN = true)
-			} else if ((0 to 25 contains(word.vsyl())) && Randomizer.pickWithProb(0.49)){
+			} else if ((0 to 15 contains(word.vsyl())) && Randomizer.pickWithProb(0.25)){
 				sg.generateSyllableV(useN = false)
 			} else {
 				sg.generateSyllableF(youonForce = false, youonProhibit = lastYouon)

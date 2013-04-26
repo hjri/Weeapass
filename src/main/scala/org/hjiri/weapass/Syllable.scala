@@ -1,3 +1,5 @@
+package org.hjiri.weapass
+
 /**
  * Created with IntelliJ IDEA.
  * User: jcd
