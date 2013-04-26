@@ -8,7 +8,7 @@
  */
 val s:SyllableGenerator = new SyllableGenerator(false, false, true)
 val w:WordGenerator = new WordGenerator(s)
-for (i <- 1 to 50){
+for (i <- 1 to 28){
 	System.out.println (w.generateWord.toString+" ")
 }
 
