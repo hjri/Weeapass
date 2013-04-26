@@ -1,10 +1,12 @@
+package org.hjiri.weapass
+
 /**
  * Created with IntelliJ IDEA.
  * User: jcd
  * Date: 4/25/13
  * Time: 9:54 PM
  */
-class SyllableGenerator (val useX: Boolean, val sInsteadOfsh: Boolean = false, val righto: Boolean = true){
+class SyllableGenerator (val sInsteadOfsh: Boolean = false, val righto: Boolean = true){
 	val sh = if (sInsteadOfsh) "s" else "sh"
 	val r = if (righto) "r" else "l"
 	val j = "j" // add option to replace with z?
@@ -34,13 +36,13 @@ class SyllableGenerator (val useX: Boolean, val sInsteadOfsh: Boolean = false, v
 		val rarity =
 		if (youonForce){
 			Rarity.Youon
-		} else if (Randomizer.pickWithProb(0.50)){
+		} else if (Randomizer.pickWithProb(0.80)){
 			Rarity.Common
-		} else if (Randomizer.pickWithProb(0.50)){
+		} else if (Randomizer.pickWithProb(0.70)){
 			Rarity.Uncommon
-		} else if (Randomizer.pickWithProb(0.50)){
+		} else if (Randomizer.pickWithProb(0.60)){
 			Rarity.Youon
-		} else if (Randomizer.pickWithProb(0.50)){
+		} else if (Randomizer.pickWithProb(0.75)){
 			Rarity.Epic
 		} else {
 			Rarity.EpicAlt

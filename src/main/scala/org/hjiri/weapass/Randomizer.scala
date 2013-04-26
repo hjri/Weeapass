@@ -1,3 +1,5 @@
+package org.hjiri.weapass
+
 import scala.util.Random
 
 /**
