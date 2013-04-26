@@ -73,8 +73,8 @@ class SyllableGenerator (val useX: Boolean, val sInsteadOfsh: Boolean = false, v
 	}
 	def generateSyllableF:Syllable = generateSyllableF(youonForce = false, youonProhibit = false)
 
-	def generateSyllableV(includeN:Boolean):Syllable = {
-		val letters = if (includeN) forAll:+"n" else forAll
+	def generateSyllableV(useN:Boolean):Syllable = {
+		val letters = if (useN) "n"::Nil else forCommon
 		new Syllable("",Randomizer.pickFrom(letters),false)
 	}
 

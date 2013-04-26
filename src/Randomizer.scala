@@ -16,4 +16,7 @@ object Randomizer {
 	def pickFrom[T](prob:List[T]): T = {
 	    prob(secuRnd.nextInt(prob.size))
 	}
+	def pickInt(min:Int,max:Int):Int = {
+		min + secuRnd.nextInt(max - min)
+	}
 }

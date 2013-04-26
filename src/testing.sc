@@ -7,29 +7,42 @@
  * sample workspace file to view how generator behaves.
  */
 val s:SyllableGenerator = new SyllableGenerator(false, false, true)
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
-s.generateSyllableF.toString()
+val w:WordGenerator = new WordGenerator(s)
+for (i <- 1 to 50){
+	System.out.println (w.generateWord.toString+" ")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
