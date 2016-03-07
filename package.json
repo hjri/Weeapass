@@ -1,0 +1,31 @@
+{
+  "name": "weeapass",
+  "version": "1.0.0",
+  "description": "Weeaboo password generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hjri/Weeapass.git"
+  },
+  "keywords": [
+    "password",
+    "generator"
+  ],
+  "author": "hj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hjri/Weeapass/issues"
+  },
+  "homepage": "https://github.com/hjri/Weeapass#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "chance": "^1.0.1",
+    "commander": "^2.9.0",
+    "lodash": "^4.6.1",
+    "weighted": "^0.3.0",
+    "weighted-random": "^0.1.0"
+  }
+}
