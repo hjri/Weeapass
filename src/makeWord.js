@@ -10,7 +10,6 @@ var _ = require('lodash'),
     ],
     consonants = {
         'b': 100,
-        'c': 75,
         'd': 100,
         'f': 50,
         'g': 100,
@@ -24,7 +23,7 @@ var _ = require('lodash'),
         'q': 0,
         'r': 50,
         's': 100,
-        't': 0,
+        't': 75,
         'v': 25,
         'w': 'v',
         'x': 0,
@@ -34,6 +33,12 @@ var _ = require('lodash'),
     youonConsonants = ['k', 's', 'c'],
     generateFunctions = {
         'syllable': function(vowel, consonant) {
+            if (vowel === 'i' && consonant === 's') {
+                consonant = 'sh';
+            }
+            if (vowel === 'i' && consonant === 't') {
+                consonant = 'ch';
+            }
             return consonant + vowel;
         },
         'youon': function(vowel) {
@@ -59,17 +64,6 @@ var _ = require('lodash'),
             };
         });
 
-        // make c2sh and c2t cross-compatible?
-        if (options.s2sh) {
-            consonants.sh = consonants.s;
-            consonants.ch = consonants.c;
-            delete consonants.s;
-            delete consonants.c;
-        }
-        if (options.c2t) {
-            consonants.t = consonants.c;
-            delete consonants.c;
-        }
         options.engrish && delete consonants.l;
         options.noW && delete consonants.w;
         options.noV && delete consonants.v;
