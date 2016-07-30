@@ -1,15 +1,22 @@
+#!/usr/bin/env node
 /**
  * Module dependencies.
  */
 
-var program = require('commander');
+var program = require('commander'),
+    makeWord = require('./makeWord');
 
 program
-    .version('1.0.0')
-    .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
+    .version('0.9.0')
+    .option('-r, --engrish', 'Removes "l" from alphabet, as it should be.')
+    .option('-w, --no-w', 'Removes "w" from alphabet.')
+    .option('-v, --no-v', 'Removes "v" from alphabet.')
+    .option('-n [number]', 'Sets amount of syllables to generate in a word, default = 6.', 6)
+    .parse(process.argv);
 
-console.log('you ordered a pizza with:');
-if (program.peppers) console.log('  - peppers');
-if (program.pineapple) console.log('  - pineapple');
-if (program.bbqSauce) console.log('  - bbq');
-console.log('  - %s cheese', program.cheese);
+console.log(makeWord({
+    engrish: program.engrish,
+    noW: !program.w,
+    noV: !program.v
+}, program.N));
+
